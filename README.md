@@ -175,25 +175,9 @@ pyhash supports the following hash algorithms
 
 Python has two types can be used to present string literals, the hash values of the two types are definitely different.
 
-- For Python 2.x [String literals](https://docs.python.org/2/reference/lexical_analysis.html#string-literals), `str` will be used by default, `unicode` can be used with the `u` prefix.
 - For Python 3.x [String and Bytes literals](https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals), `unicode` will be used by default, `bytes` can be used with the `b` prefix.
 
 For example,
-
-```
-$ python2
-Python 2.7.15 (default, Jun 17 2018, 12:46:58)
-[GCC 4.2.1 Compatible Apple LLVM 9.1.0 (clang-902.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> import pyhash
->>> hasher = pyhash.murmur3_32()
->>> hasher('foo')
-4138058784L
->>> hasher(u'foo')
-2085578581L
->>> hasher(b'foo')
-4138058784L
-```
 
 ```
 $ python3
@@ -209,11 +193,3 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> hasher(b'foo')
 4138058784
 ```
-
-You can also import [unicode_literals](http://python-future.org/unicode_literals.html) to use unicode literals in Python 2.x
-
-```python
-from __future__ import unicode_literals
-```
-
-> In general, it is more compelling to use unicode_literals when back-porting new or existing Python 3 code to Python 2/3 than when porting existing Python 2 code to 2/3. In the latter case, explicitly marking up all unicode string literals with u'' prefixes would help to avoid unintentionally changing the existing Python 2 API. However, if changing the existing Python 2 API is not a concern, using unicode_literals may speed up the porting process.
